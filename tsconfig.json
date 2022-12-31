@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "baseUrl": "./src",
+    "rootDir": "./",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "strict": true,
+    "lib": ["ESNext"],
+    "strictPropertyInitialization": false,
+    "paths": {
+      "@database/*": ["./database/*"],
+      "@config/*": ["./config/*"],
+      "@modules/*": ["./modules/*"],
+      "@middlewares/*": ["./middlewares/*"],
+      "@features/*": ["./features/*"],
+      "@Util/*": ["./Util/*"],
+      "@shared/*": ["./shared/*"]
+    },
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  },
+  "exclude": ["src/**/*.spec.ts", "src/**/*.test.ts"]
+}
