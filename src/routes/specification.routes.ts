@@ -1,12 +1,10 @@
 /* eslint-disable max-len */
 import { Router } from 'express';
 
-import { CreateSpecificationController } from '@modules/cars/useCase/createSpecification/createSpecificationController';
+import { createSpecificationController } from '@modules/cars/useCase/createSpecification';
 
 const specificationRoutes = Router();
 
-const createSpecificationController = new CreateSpecificationController();
-
-specificationRoutes.post('/', createSpecificationController.handle);
+specificationRoutes.post('/', (request, response) => createSpecificationController.handle(request, response));
 
 export { specificationRoutes };
