@@ -2,7 +2,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import 'express-async-errors';
 
-import { caregoriesRoutes } from 'routes/categories.routes';
+import { router } from 'routes';
 
 import { AppError } from '@shared/Util/AppError/AppError';
 
@@ -10,7 +10,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use('/categories', caregoriesRoutes);
+app.use(router);
 
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
   if (err instanceof AppError) {
