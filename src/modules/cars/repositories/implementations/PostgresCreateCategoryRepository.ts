@@ -21,7 +21,6 @@ class PostgressCategoriesRepository implements ICategoriesRepository {
     Object.assign(data, {
       name,
       description,
-      created_at: new Date(),
     });
 
     const category = await prisma.categories.create({

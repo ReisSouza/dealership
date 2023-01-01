@@ -11,10 +11,10 @@ datasource db {
 }
 
 model Categories {
-  id          String   @id @default(uuid())
-  name        String
+  id          String   @id @unique @default(uuid())
+  name        String   @unique
   description String
-  created_at  DateTime
+  created_at  DateTime @default(now())
 
   @@map("categories")
 }
@@ -23,7 +23,7 @@ model Specification {
   id          String   @id @default(uuid())
   name        String
   description String
-  created_at  DateTime
+  created_at  DateTime @default(now())
 
   @@map("specification")
 }

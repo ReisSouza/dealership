@@ -22,7 +22,6 @@ class PostgressSpecificationRepository implements ISpecificationRepository {
     Object.assign(data, {
       name,
       description,
-      created_at: new Date(),
     });
 
     const specification = await prisma.specification.create({
