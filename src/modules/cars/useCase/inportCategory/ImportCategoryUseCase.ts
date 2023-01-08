@@ -1,13 +1,12 @@
 import { Express } from 'express';
 
-import { IImportCategoriesDTO, IImportRepository } from '@modules/cars/repositories/IImportCategoriesDTO';
+import { ICategoriesRepository } from '@modules/cars/repositories/ICreateCategoryDTO';
+import { IImportCategoriesDTO } from '@modules/cars/repositories/IImportCategoriesDTO';
 import { parse as csvParse } from 'csv-parse';
 import fs from 'fs';
 
-import { AppError } from '@shared/Util/AppError/AppError';
-
 export class ImportCategoryUseCase {
-  constructor(private categoriesRespositories: IImportRepository) {}
+  constructor(private categoriesRespositories: ICategoriesRepository) {}
 
   async loadingCategories(file: Express.Multer.File): Promise<IImportCategoriesDTO[]> {
     return new Promise((resolve, reject) => {
@@ -39,14 +38,17 @@ export class ImportCategoryUseCase {
 
   async execute(file: Express.Multer.File) {
     const categories = await this.loadingCategories(file);
+    console.log(categories);
 
-    const { categoriesAlreadyExists } = await this.categoriesRespositories.categoriesAlreadyExists(categories);
-
-    if (categoriesAlreadyExists) {
-      throw new AppError('Categories already exist');
-    }
-    const rest = await this.categoriesRespositories.createCategories(categories);
-
-    return rest;
+    categories.map(async (category) => {
+      const { description, name } = category;
+      const existCategory = await this.categoriesRespositories.findIsExistCategory({ name });
+      if (!existCategory) {
+        this.categoriesRespositories.createCategory({
+          description,
+          name,
+        });
+      }
+    });
   }
 }

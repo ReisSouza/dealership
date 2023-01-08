@@ -12,7 +12,6 @@ export class LoadingFile {
     stream.pipe(parserFile);
 
     parserFile.on('data', async (line) => {
-      console.log(line);
     });
   }
 }

@@ -25,7 +25,6 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
     status: 'error',
     message: 'Internal Server Error',
   });
-
   return next();
 });
 

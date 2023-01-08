@@ -1,10 +1,11 @@
 /* eslint-disable max-len */
-import { PostgressCategoriesRepository } from '@modules/cars/repositories/implementations/PostgresCreateCategoryRepository';
+import { CategoriesRepository } from '@modules/cars/repositories/implementations/CategoriesRepository';
+// import { PostgressCategoriesRepository } from '@modules/cars/repositories/implementations/PostgresCreateCategoryRepository';
 
 import { CreateCategoryController } from './createCategoryController';
 import { CreateCategoryUseCase } from './createCategoryUseCase';
 
-const createCategoryRepository = new PostgressCategoriesRepository();
+const createCategoryRepository = CategoriesRepository.getInstance();
 
 const createCategoryUseCase = new CreateCategoryUseCase(createCategoryRepository);
 

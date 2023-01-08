@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgres://postgres:REIS@localhost:5432/dealership"
 }
 
 model Categories {
